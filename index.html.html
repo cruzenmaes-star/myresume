@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cruz Martinez — Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy2: #162032;
+    --gold: #c9953a;
+    --gold-light: #e8b96a;
+    --cream: #f5f0e8;
+    --white: #ffffff;
+    --text-dark: #1a1a2e;
+    --text-muted: #6b7280;
+    --text-light: #9ca3af;
+    --border: #e5e0d8;
+    --section-bg: #faf8f4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--section-bg);
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  /* ── TOP NAV ── */
+  .topbar {
+    background: var(--navy);
+    padding: 0.75rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .topbar-name {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold-light);
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+  }
+  .topbar-actions { display: flex; gap: 0.75rem; align-items: center; }
+  .btn-lang {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    transition: all 0.2s;
+  }
+  .btn-lang:hover { background: var(--gold); color: var(--navy); }
+  .btn-print {
+    background: var(--gold);
+    border: none;
+    color: var(--navy);
+    padding: 0.35rem 1rem;
+    border-radius: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .btn-print:hover { background: var(--gold-light); }
+
+  /* ── LAYOUT ── */
+  .resume-wrap {
+    max-width: 1060px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    min-height: calc(100vh - 50px);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    background: var(--navy);
+    padding: 2.5rem 1.75rem;
+    position: relative;
+  }
+  .sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--gold);
+  }
+  .avatar-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  .avatar {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--navy);
+    border: 3px solid rgba(201,149,58,0.3);
+  }
+  .s-name {
+    font-family: 'Playfair Display', serif;
+    color: var(--white);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.3;
+    margin-bottom: 0.25rem;
+  }
+  .s-title {
+    color: var(--gold-light);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.75rem;
+  }
+
+  .s-section { margin-bottom: 2rem; }
+  .s-section-title {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(201,149,58,0.25);
+  }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    margin-bottom: 0.65rem;
+  }
+  .contact-icon {
+    width: 20px; height: 20px;
+    background: rgba(201,149,58,0.15);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .contact-icon svg { width: 11px; height: 11px; fill: var(--gold); }
+  .contact-text {
+    color: #c8cfd8;
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+  .contact-text a { color: var(--gold-light); text-decoration: none; }
+  .contact-text a:hover { text-decoration: underline; }
+
+  /* Skill bars */
+  .skill-item { margin-bottom: 0.85rem; }
+  .skill-label {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 0.3rem;
+  }
+  .skill-name { color: #c8cfd8; font-size: 0.82rem; }
+  .skill-pct { color: var(--gold-light); font-size: 0.72rem; font-weight: 500; }
+  .skill-track {
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 2px;
+    width: 0;
+    transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* Soft skills pills */
+  .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .pill {
+    background: rgba(201,149,58,0.12);
+    border: 1px solid rgba(201,149,58,0.3);
+    color: var(--gold-light);
+    font-size: 0.75rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+  }
+
+  /* Languages */
+  .lang-item { margin-bottom: 0.75rem; }
+  .lang-name { color: var(--white); font-size: 0.85rem; font-weight: 500; margin-bottom: 0.3rem; }
+  .lang-level { color: #6b7d94; font-size: 0.72rem; margin-bottom: 0.3rem; }
+  .lang-dots { display: flex; gap: 4px; }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    transition: background 0.3s;
+  }
+  .dot.filled { background: var(--gold); }
+
+  /* ── MAIN ── */
+  .main { background: var(--white); padding: 2.5rem 2.25rem; }
+
+  /* Header quote */
+  .quote-block {
+    background: var(--cream);
+    border-left: 3px solid var(--gold);
+    padding: 1rem 1.25rem;
+    margin-bottom: 2.25rem;
+    border-radius: 0 8px 8px 0;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.97rem;
+    color: var(--text-dark);
+    font-style: italic;
+    line-height: 1.65;
+  }
+  .quote-attribution {
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+
+  /* Sections */
+  .m-section { margin-bottom: 2.25rem; }
+  .m-section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 2px solid var(--cream);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .m-section-title::before {
+    content: '';
+    display: inline-block;
+    width: 14px; height: 14px;
+    background: var(--gold);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Experience cards */
+  .exp-card {
+    padding: 1.1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    position: relative;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .exp-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.25s;
+  }
+  .exp-card:hover { border-color: var(--gold); }
+  .exp-card:hover::before { transform: scaleY(1); }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+  .exp-title { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); margin-bottom: 0.2rem; }
+  .exp-company {
+    color: var(--gold);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .exp-period {
+    background: var(--section-bg);
+    color: var(--text-muted);
+    font-size: 0.72rem;
+    font-weight: 500;
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .exp-detail {
+    margin-top: 0.65rem;
+    color: var(--text-muted);
+    font-size: 0.83rem;
+    line-height: 1.65;
+    display: none;
+  }
+  .exp-card.open .exp-detail { display: block; }
+  .exp-toggle {
+    position: absolute; right: 1rem; bottom: 1rem;
+    font-size: 0.72rem; color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* Education */
+  .edu-card {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .edu-icon {
+    width: 42px; height: 42px;
+    background: var(--navy);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .edu-icon svg { width: 22px; height: 22px; fill: var(--gold); }
+  .edu-degree { font-weight: 600; color: var(--text-dark); font-size: 0.95rem; }
+  .edu-school { color: var(--gold); font-size: 0.83rem; font-weight: 500; margin: 0.15rem 0; }
+  .edu-area { color: var(--text-muted); font-size: 0.8rem; line-height: 1.5; }
+
+  /* Tech skills grid */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+  .tech-card {
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.2s;
+  }
+  .tech-card:hover { border-color: var(--gold); }
+  .tech-card-title { font-size: 0.82rem; font-weight: 600; color: var(--text-dark); margin-bottom: 0.2rem; }
+  .tech-card-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.45; }
+
+  /* Stats row */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .stat-box {
+    text-align: center;
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .stat-lbl { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .resume-wrap { grid-template-columns: 1fr; }
+    .sidebar { padding: 2rem 1.5rem; }
+    .main { padding: 1.75rem 1.25rem; }
+    .stats-row { grid-template-columns: repeat(3, 1fr); }
+    .tech-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .stats-row { grid-template-columns: 1fr; }
+    .tech-grid { grid-template-columns: 1fr; }
+    .exp-header { flex-direction: column; }
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    .topbar { display: none; }
+    .resume-wrap { display: block; }
+    .sidebar { background: var(--navy) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; padding: 1.5rem; }
+    .exp-detail { display: block !important; }
+    .exp-toggle { display: none; }
+    body { background: white; }
+  }
+
+  /* Fade-in animation */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<div class="topbar">
+  <div class="topbar-name">Cruz Martinez</div>
+  <div class="topbar-actions">
+    <button class="btn-lang" id="langBtn" onclick="toggleLang()">ES / EN</button>
+    <button class="btn-print" onclick="window.print()">⬇ Download PDF</button>
+  </div>
+</div>
+
+<div class="resume-wrap">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="avatar-wrap"><div class="avatar">CM</div></div>
+    <div class="s-name">Cruz Martinez</div>
+    <div class="s-title" data-en="IT Sales & Customer Executive" data-es="Ejecutivo IT Sales & Cliente">IT Sales & Customer Executive</div>
+
+    <div class="s-section">
+      <div class="s-section-title">Contact</div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 16 16"><path d="M8 0C5.24 0 3 2.24 3 5c0 3.75 5 11 5 11s5-7.25 5-11c0-2.76-2.24-5-5-5zm0 6.75C7.03 6.75 6.25 5.97 6.25 5S7.03 3.25 8 3.25 9.75 4.03 9.75 5 8.97 6.75 8 6.75z"/></svg>
+        </div>
+        <div class="contact-text">Durham, NC</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 16 16"><path d="M2 2h12c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H2c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2zm6 5L2 4v8h12V4l-6 3z"/></svg>
+        </div>
+        <div class="contact-text"><a href="mailto:cruzenmaesusa@gmail.com">cruzenmaesusa@gmail.com</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">
+          <svg viewBox="0 0 16 16"><path d="M2 2c1 0 3 1.5 3 3L4 6.5c1.5 3 3.5 4.5 5.5 6l1.5-1c1.5 0 3 2 3 3s-2 2-3 2C4 16.5.5 7.5.5 3c0-1 1-1 1.5-1z"/></svg>
+        </div>
+        <div class="contact-text">(919) 358-8978</div>
+      </div>
+    </div>
+
+    <div class="s-section">
+      <div class="s-section-title" data-en="Core Skills" data-es="Habilidades Clave">Core Skills</div>
+      <div class="skill-item">
+        <div class="skill-label"><span class="skill-name" data-en="Sales & Negotiation" data-es="Ventas y Negociación">Sales & Negotiation</span><span class="skill-pct">95%</span></div>
+        <div class="skill-track"><div class="skill-bar" data-pct="95"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span class="skill-name" data-en="Customer Experience" data-es="Experiencia al Cliente">Customer Experience</span><span class="skill-pct">95%</span></div>
+        <div class="skill-track"><div class="skill-bar" data-pct="95"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span class="skill-name">IT Foundations</span><span class="skill-pct">75%</span></div>
+        <div class="skill-track"><div class="skill-bar" data-pct="75"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span class="skill-name" data-en="Project Management" data-es="Gestión de Proyectos">Project Management</span><span class="skill-pct">70%</span></div>
+        <div class="skill-track"><div class="skill-bar" data-pct="70"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-label"><span class="skill-name">Android Development</span><span class="skill-pct">65%</span></div>
+        <div class="skill-track"><div class="skill-bar" data-pct="65"></div></div>
+      </div>
+    </div>
+
+    <div class="s-section">
+      <div class="s-section-title" data-en="Languages" data-es="Idiomas">Languages</div>
+      <div class="lang-item">
+        <div class="lang-name">English</div>
+        <div class="lang-level" data-en="Fluent" data-es="Fluido">Fluent</div>
+        <div class="lang-dots">
+          <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+        </div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-name">Español</div>
+        <div class="lang-level" data-en="Native" data-es="Nativo">Native</div>
+        <div class="lang-dots">
+          <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-section">
+      <div class="s-section-title" data-en="Leadership" data-es="Liderazgo">Leadership</div>
+      <div class="pills">
+        <span class="pill" data-en="Decision Making" data-es="Toma de Decisiones">Decision Making</span>
+        <span class="pill" data-en="Emotional Intelligence" data-es="Inteligencia Emocional">Emotional Intelligence</span>
+        <span class="pill" data-en="Mentoring" data-es="Mentoría">Mentoring</span>
+        <span class="pill" data-en="Strategic Thinking" data-es="Pensamiento Estratégico">Strategic Thinking</span>
+        <span class="pill" data-en="Team Leadership" data-es="Liderazgo de Equipo">Team Leadership</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <!-- Stats -->
+    <div class="stats-row fade-in">
+      <div class="stat-box">
+        <div class="stat-num">6<span style="font-size:1rem">+</span></div>
+        <div class="stat-lbl" data-en="Years Experience" data-es="Años de Experiencia">Years Experience</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">5</div>
+        <div class="stat-lbl" data-en="Companies" data-es="Empresas">Companies</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">2</div>
+        <div class="stat-lbl" data-en="Languages" data-es="Idiomas">Languages</div>
+      </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="quote-block fade-in">
+      <div class="quote-text" id="quote-text">"Selling is like being a doctor: first, you listen to understand the patient's needs. Then — and only then — do you prescribe a solution."</div>
+      <div class="quote-attribution">— Cruz Martinez · Professional Philosophy</div>
+    </div>
+
+    <!-- Summary -->
+    <div class="m-section fade-in">
+      <div class="m-section-title" data-en="Professional Summary" data-es="Resumen Profesional">Professional Summary</div>
+      <p id="summary-text" style="color:#374151;font-size:0.9rem;line-height:1.75;">
+        Sales and Customer Experience Executive with <strong>6+ years</strong> of proven results exceeding quota in high-traffic, multilingual environments. Holder of a <strong>B.S. in IT Engineering</strong>, with applied knowledge of software development, database management, networking, and cybersecurity principles. Experienced in project management through <strong>PMBOK and Lean Startup</strong> methodologies. Fully bilingual in <strong>English and Spanish</strong>, with a track record of building rapport with diverse international clientele. Passionate about bridging the gap between technology and people — the ideal fit for IT Sales, Technical Account Management, or Customer Success roles.
+      </p>
+    </div>
+
+    <!-- Experience -->
+    <div class="m-section fade-in">
+      <div class="m-section-title" data-en="Professional Experience" data-es="Experiencia Profesional">Professional Experience</div>
+
+      <div class="exp-card open" onclick="toggleCard(this)">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title" data-en="Tour Guide · Sales Representative · Entertainer" data-es="Guía Turístico · Vendedor · Animador">Tour Guide · Sales Representative · Entertainer</div>
+            <div class="exp-company">XOXIMILCO (Grupo Xcaret)</div>
+          </div>
+          <div class="exp-period" data-en="6 Years" data-es="6 Años">6 Years</div>
+        </div>
+        <div class="exp-detail" id="exp1">
+          <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.4rem;">
+            <li style="display:flex;gap:0.5rem;"><span style="color:var(--gold);margin-top:3px;">▸</span><span data-en="Led large-group experiences for hundreds of international tourists daily, consistently exceeding up-sell and satisfaction targets." data-es="Lideré experiencias para cientos de turistas internacionales diariamente, superando consistentemente metas de up-sell y satisfacción.">Led large-group experiences for hundreds of international tourists daily, consistently exceeding up-sell and satisfaction targets.</span></li>
+            <li style="display:flex;gap:0.5rem;"><span style="color:var(--gold);margin-top:3px;">▸</span><span data-en="Delivered bilingual (ES/EN) guided entertainment, adapting communication style to diverse cultural audiences." data-es="Realicé animación y guía bilingüe (ES/EN), adaptando el estilo de comunicación a audiencias culturalmente diversas.">Delivered bilingual (ES/EN) guided entertainment, adapting communication style to diverse cultural audiences.</span></li>
+            <li style="display:flex;gap:0.5rem;"><span style="color:var(--gold);margin-top:3px;">▸</span><span data-en="Routinely surpassed sales quotas through consultative selling — listening first, then recommending solutions." data-es="Superé cuotas de ventas de forma regular mediante ventas consultivas: escuchar primero, luego recomendar soluciones.">Routinely surpassed sales quotas through consultative selling — listening first, then recommending solutions.</span></li>
+          </ul>
+        </div>
+        <div class="exp-toggle" data-en="▲ less" data-es="▲ menos">▲ less</div>
+      </div>
+
+      <div class="exp-card" onclick="toggleCard(this)">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title" data-en="Cashier · Sales Associate · Customer Service Rep" data-es="Cajero · Vendedor · Atención al Cliente">Cashier · Sales Associate · Customer Service Rep</div>
+            <div class="exp-company">Xcaret & Xel-Há · Grupo Xcaret</div>
+          </div>
+          <div class="exp-period">Multi-role</div>
+        </div>
+        <div class="exp-detail">
+          <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.4rem;">
+            <li style="display:flex;gap:0.5rem;"><span style="color:var(--gold);margin-top:3px;">▸</span><span data-en="Managed high-volume point-of-sale operations and cash handling across premier eco-parks." data-es="Gestioné operaciones de punto de venta de alto volumen y manejo de efectivo en parques ecológicos de primer nivel.">Managed high-volume point-of-sale operations and cash handling across premier eco-parks.</span></li>
+            <li style="display:flex;gap:0.5rem;"><span style="color:var(--gold);margin-top:3px;">▸</span><span data-en="Provided exceptional service to international visitors, resolving issues swiftly and ensuring repeat satisfaction." data-es="Brindé servicio excepcional a visitantes internacionales, resolviendo problemas rápidamente y garantizando satisfacción.">Provided exceptional service to international visitors, resolving issues swiftly and ensuring repeat satisfaction.</span></li>
+          </ul>
+        </div>
+        <div class="exp-toggle" data-en="▼ more" data-es="▼ más">▼ more</div>
+      </div>
+
+      <div class="exp-card" onclick="toggleCard(this)">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title" data-en="Sales Associate · Jewelry Consultant" data-es="Vendedor · Consultor de Joyería">Sales Associate · Jewelry Consultant</div>
+            <div class="exp-company">Joyería Matiz</div>
+          </div>
+          <div class="exp-period">Retail Sales</div>
+        </div>
+        <div class="exp-detail">
+          <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.4rem;">
+            <li style="display:flex;gap:0.5rem;"><span style="color:var(--gold);margin-top:3px;">▸</span><span data-en="Delivered high-touch luxury sales consultations, guiding clients through premium jewelry selections." data-es="Realicé consultas de ventas de lujo de alto contacto, guiando a clientes a través de selecciones de joyería premium.">Delivered high-touch luxury sales consultations, guiding clients through premium jewelry selections.</span></li>
+            <li style="display:flex;gap:0.5rem;"><span style="color:var(--gold);margin-top:3px;">▸</span><span data-en="Built lasting client relationships through personalized service and product expertise." data-es="Construí relaciones duraderas con clientes mediante servicio personalizado y conocimiento del producto.">Built lasting client relationships through personalized service and product expertise.</span></li>
+          </ul>
+        </div>
+        <div class="exp-toggle" data-en="▼ more" data-es="▼ más">▼ more</div>
+      </div>
+
+      <div class="exp-card" onclick="toggleCard(this)">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title" data-en="Front Desk Receptionist" data-es="Recepcionista de Front Desk">Front Desk Receptionist</div>
+            <div class="exp-company">Hotel Bahía Príncipe</div>
+          </div>
+          <div class="exp-period">Hospitality</div>
+        </div>
+        <div class="exp-detail">
+          <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:0.4rem;">
+            <li style="display:flex;gap:0.5rem;"><span style="color:var(--gold);margin-top:3px;">▸</span><span data-en="Managed guest check-in/check-out operations for an international 5-star resort." data-es="Gestioné operaciones de check-in/check-out en un resort internacional de 5 estrellas.">Managed guest check-in/check-out operations for an international 5-star resort.</span></li>
+            <li style="display:flex;gap:0.5rem;"><span style="color:var(--gold);margin-top:3px;">▸</span><span data-en="Coordinated bilingual communication between guests and hotel departments, ensuring seamless experiences." data-es="Coordiné comunicación bilingüe entre huéspedes y departamentos del hotel, garantizando experiencias fluidas.">Coordinated bilingual communication between guests and hotel departments, ensuring seamless experiences.</span></li>
+          </ul>
+        </div>
+        <div class="exp-toggle" data-en="▼ more" data-es="▼ más">▼ more</div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="m-section fade-in">
+      <div class="m-section-title" data-en="Education" data-es="Educación">Education</div>
+      <div class="edu-card">
+        <div class="edu-icon">
+          <svg viewBox="0 0 24 24"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+        </div>
+        <div>
+          <div class="edu-degree" data-en="B.S. in Information Technology Engineering" data-es="Ing. en Tecnologías de la Información">B.S. in Information Technology Engineering</div>
+          <div class="edu-school">Universidad Tecnológica de la Riviera Maya</div>
+          <div class="edu-area" data-en="Software Development · Database Management · Networking · Cybersecurity · Systems Analysis" data-es="Desarrollo de Software · Gestión de Bases de Datos · Redes · Ciberseguridad · Análisis de Sistemas">Software Development · Database Management · Networking · Cybersecurity · Systems Analysis</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Knowledge -->
+    <div class="m-section fade-in">
+      <div class="m-section-title" data-en="Technical Knowledge" data-es="Conocimiento Técnico">Technical Knowledge</div>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-card-title" data-en="Software Development" data-es="Desarrollo de Software">Software Development</div>
+          <div class="tech-card-desc" data-en="SDLC, Python, Java, C++ fundamentals · Android development." data-es="SDLC, fundamentos de Python, Java, C++ · Desarrollo Android.">SDLC, Python, Java, C++ fundamentals · Android development.</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card-title" data-en="Database Management" data-es="Gestión de Bases de Datos">Database Management</div>
+          <div class="tech-card-desc" data-en="Designing and optimizing data structures to support business decisions." data-es="Diseño y optimización de estructuras de datos para decisiones de negocio.">Designing and optimizing data structures to support business decisions.</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card-title" data-en="Networking & Cloud" data-es="Redes y Nube">Networking & Cloud</div>
+          <div class="tech-card-desc" data-en="Network configuration, web services, and cloud environment basics." data-es="Configuración de redes, servicios web y fundamentos de entornos en la nube.">Network configuration, web services, and cloud environment basics.</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card-title" data-en="Cybersecurity" data-es="Ciberseguridad">Cybersecurity</div>
+          <div class="tech-card-desc" data-en="Foundational cybersecurity practices, risk management, and data protection." data-es="Prácticas de ciberseguridad, gestión de riesgos y protección de datos.">Foundational cybersecurity practices, risk management, and data protection.</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card-title" data-en="Project Management" data-es="Gestión de Proyectos">Project Management</div>
+          <div class="tech-card-desc" data-en="PMBOK methodology for enterprises · Lean Startup for agile environments." data-es="Metodología PMBOK para empresas · Lean Startup para entornos ágiles.">PMBOK methodology for enterprises · Lean Startup for agile environments.</div>
+        </div>
+        <div class="tech-card">
+          <div class="tech-card-title" data-en="AI & Digital Literacy" data-es="IA y Alfabetización Digital">AI & Digital Literacy</div>
+          <div class="tech-card-desc" data-en="Working knowledge of AI tools, automation, and general tech ecosystems." data-es="Conocimiento operativo de herramientas de IA, automatización y ecosistemas tecnológicos.">Working knowledge of AI tools, automation, and general tech ecosystems.</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+  let lang = 'en';
+
+  function toggleLang() {
+    lang = lang === 'en' ? 'es' : 'en';
+    document.querySelectorAll('[data-en]').forEach(el => {
+      el.textContent = lang === 'en' ? el.dataset.en : el.dataset.es;
+    });
+    const quoteEl = document.getElementById('quote-text');
+    if (lang === 'es') {
+      quoteEl.textContent = '"Vender es como ser médico: primero escuchas para entender las necesidades del paciente. Luego — y solo entonces — prescribes una solución."';
+    } else {
+      quoteEl.textContent = '"Selling is like being a doctor: first, you listen to understand the patient\'s needs. Then — and only then — do you prescribe a solution."';
+    }
+    const summEl = document.getElementById('summary-text');
+    if (lang === 'es') {
+      summEl.innerHTML = 'Ejecutivo de Ventas y Experiencia al Cliente con <strong>más de 6 años</strong> de resultados probados superando cuotas en entornos multilingües de alto tráfico. Titular de un <strong>B.S. en Ingeniería en TI</strong>, con conocimiento aplicado de desarrollo de software, bases de datos, redes y ciberseguridad. Experiencia en gestión de proyectos mediante metodologías <strong>PMBOK y Lean Startup</strong>. Completamente bilingüe en <strong>inglés y español</strong>, con historial de construir relaciones con clientela internacional diversa. Apasionado por conectar tecnología con personas — el fit ideal para IT Sales, Gestión de Cuentas Técnicas o Customer Success.';
+    } else {
+      summEl.innerHTML = 'Sales and Customer Experience Executive with <strong>6+ years</strong> of proven results exceeding quota in high-traffic, multilingual environments. Holder of a <strong>B.S. in IT Engineering</strong>, with applied knowledge of software development, database management, networking, and cybersecurity principles. Experienced in project management through <strong>PMBOK and Lean Startup</strong> methodologies. Fully bilingual in <strong>English and Spanish</strong>, with a track record of building rapport with diverse international clientele. Passionate about bridging the gap between technology and people — the ideal fit for IT Sales, Technical Account Management, or Customer Success roles.';
+    }
+  }
+
+  function toggleCard(card) {
+    const isOpen = card.classList.contains('open');
+    const toggle = card.querySelector('.exp-toggle');
+    if (isOpen) {
+      card.classList.remove('open');
+      toggle.setAttribute('data-en','▼ more');
+      toggle.setAttribute('data-es','▼ más');
+      toggle.textContent = lang === 'es' ? '▼ más' : '▼ more';
+    } else {
+      card.classList.add('open');
+      toggle.setAttribute('data-en','▲ less');
+      toggle.setAttribute('data-es','▲ menos');
+      toggle.textContent = lang === 'es' ? '▲ menos' : '▲ less';
+    }
+  }
+
+  // Animate skill bars
+  function animateBars() {
+    document.querySelectorAll('.skill-bar').forEach(bar => {
+      bar.style.width = bar.dataset.pct + '%';
+    });
+  }
+
+  // Intersection observer for fade-ins and bar animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Trigger bars after a small delay (sidebar is always visible)
+  setTimeout(animateBars, 400);
+</script>
+</body>
+</html>
